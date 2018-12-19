@@ -5,6 +5,8 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.Security;
 using System.Configuration;
+using System.Text;
+using System.Security.Principal;
 
 public partial class _Default : System.Web.UI.Page 
 {
@@ -13,10 +15,26 @@ public partial class _Default : System.Web.UI.Page
         Welcome.Text = "Hello, " + Context.User.Identity.Name;
 
 
-        
-        string connStr = ConfigurationManager.ConnectionStrings["BAIS3110Security"].ConnectionString;
-        ConnectionString.Text = connStr;
+        CustomPrincipal cp = HttpContext.Current.User as CustomPrincipal;
+        Response.Write("Authenticated Identity is: " +
+                        cp.Identity.Name);
+        Response.Write("<p>");
+
+        if (cp.IsInRole("user"))
+        {
+            Response.Write(cp.Identity.Name + " is in the user Role" );
+          
+            Response.Write("<p>");
+        }
+        if (cp.IsInRole("Admin"))
+        {
+            Response.Write(cp.Identity.Name + " is in the Admin Role");
+
+            Response.Write("<p>");
+        }
     }
+
+
 
 
     public void Signout_Click(object sender, EventArgs e)

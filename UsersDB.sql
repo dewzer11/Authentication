@@ -1,15 +1,17 @@
 Create Database BAIS3110Security
 
+drop table Users
 
 Create Table Users(
 Email varchar(30),
 Password varchar(255),
-Salt varchar(20)
+Salt varchar(20),
+Role VARCHAR(80)
 )
-drop table Users
+
 
 GO
-Create Proc AddUser(@Email varchar(30) = NULL, @Password varchar(255)=NULL, @Salt varchar(20)=NULL)
+Create Proc AddUser(@Email varchar(30) = NULL, @Password varchar(255)=NULL, @Salt varchar(20)=NULL, @Role VARCHAR(80)=NULL)
 as
 	DECLARE @ReturnCode INT
 	SET @ReturnCode = 1
@@ -20,11 +22,13 @@ as
 	If @Password IS NULL
 		RAISERROR ('AddPassword - Required parameter: @Password',16,1)
 	ELSE
+	IF @Role IS NULL
+		set @Role = 'user'
 		BEGIN
 			INSERT INTO Users
-			(Email,Password, Salt)
+			(Email,Password, Salt, Role)
 			VALUES
-			(@Email, @Password, @Salt)
+			(@Email, @Password, @Salt, @Role)
 
 			IF @@ERROR = 0
 				SET @ReturnCode = 0
@@ -44,7 +48,7 @@ as
 		RAISERROR ('GetUser - Required parameter: @Email',16,1)
 	ELSE
 		BEGIN
-			Select Email, Password, Salt
+			Select Email, Password, Salt, Role
 			From Users
 			where @Email = Email
 
@@ -57,3 +61,8 @@ RETURN @ReturnCode
 
 Drop Proc GetUser
 select * from Users
+
+GO
+Update Users
+Set Role = 'Admin'
+where Email = 'obarnett@nait.ca'

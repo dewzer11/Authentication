@@ -10,14 +10,7 @@ public class User
     private string email;
     private string password;
     private string salt;
-    public User()
-    {
-
-        //
-        // TODO: Add constructor logic here
-        //
-    
-    }
+    private string role;
 
     public string Email
     {
@@ -55,6 +48,19 @@ public class User
         set
         {
             salt = value;
+        }
+    }
+
+    public string Role
+    {
+        get
+        {
+            return role;
+        }
+
+        set
+        {
+            role = value;
         }
     }
 }

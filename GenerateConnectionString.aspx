@@ -11,10 +11,15 @@
         Please enter your connection string:
         <asp:TextBox ID="ConnectionString" runat="server"></asp:TextBox>
         <asp:Button ID="EncryptButton" runat="server" Text="Encrypt"  OnClick="EncryptButton_Click"/>
+
         <br />
         <br />
         <asp:Label ID="Label1" runat="server" Text="Your encrypted connection string is:"></asp:Label>
         <asp:Label ID="EncryptedString" runat="server" Text=""></asp:Label>
+        <br />
+        
+        <asp:Label ID="Label2" runat="server" Text="Your decrypted connections string is:"></asp:Label>
+        <asp:Label ID="DecryptedString" runat="server" Text=""></asp:Label>
     </form>
 </body>
 </html>

@@ -42,6 +42,7 @@ public class SecurityManager
         //SQL Connection object (ADO.NET) to connect to database
         SqlConnection BAIS3110Security = new SqlConnection();
         BAIS3110Security.ConnectionString = "Persist Security Info=False;Integrated Security=True;Database=BAIS3110Security;server=(localdb)\\MSSQLLocalDB;";
+        //BAIS3110Security.ConnectionString = "Persist Security Info=False;Integrated Security=True;Database=BAIS3110Security;server=DESKTOP-80NCARS;";
         BAIS3110Security.Open();
 
 
@@ -84,6 +85,7 @@ public class SecurityManager
 
         SqlConnection BAIS3110Security = new SqlConnection();
         BAIS3110Security.ConnectionString = "Persist Security Info=False;Integrated Security=True;Database=BAIS3110Security;server=(localdb)\\MSSQLLocalDB;";
+        //BAIS3110Security.ConnectionString = "Persist Security Info=False;Integrated Security=True;Database=BAIS3110Security;server=DESKTOP-80NCARS;";
         BAIS3110Security.Open();
 
 
@@ -110,6 +112,7 @@ public class SecurityManager
                 member.Email = GetUserDataReader[0].ToString();
                 member.Password = GetUserDataReader[1].ToString();
                 member.Salt = GetUserDataReader[2].ToString();
+                member.Role = GetUserDataReader[3].ToString();
             }
         }
 

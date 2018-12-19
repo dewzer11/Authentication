@@ -23,7 +23,7 @@ public partial class EncryptionExample : System.Web.UI.Page
 
         // Decrypt the data and store in a byte array.
         byte[] originalData = Encryption.Unprotect(encryptedSecret);
-        Response.Write("{0}The original data is:", Environment.NewLine);
+        Response.Write("The original data is:");
         Encryption.PrintValues(originalData);
     }
 }

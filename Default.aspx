@@ -30,11 +30,6 @@
     <form id="form1" runat="server">
         <asp:Button ID="Submit1" OnClick="Signout_Click" runat="server" Text="Sign Out" />
 
-
-        <br /><br />
-        <asp:Label ID="ReadingString" runat="server" Text="Your Encrypted connection string is:"></asp:Label>
-        <br />
-        <asp:Label ID="ConnectionString" runat="server" Text=""></asp:Label>
     </form>
 </body>
 </html>

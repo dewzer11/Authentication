@@ -22,10 +22,11 @@ public class DataProtectionSample
 
     public string DecryptString(string data)
     {
-        byte[] binary = Convert.FromBase64String(data);
-        byte[] decryptedArray = Unprotect(binary);
-        string decryptedString = Encoding.ASCII.GetString(decryptedArray);
-        return decryptedString;
+        string encryptedString = data;
+        byte[] encryptedArray = Convert.FromBase64String(encryptedString);
+        byte[] unencryptedArray = Unprotect(encryptedArray);
+        string unencryptedString = Encoding.ASCII.GetString(unencryptedArray);
+        return unencryptedString;
     }
 
     public byte[] Protect(byte[] data)
@@ -48,8 +49,9 @@ public class DataProtectionSample
     {
         try
         {
-            //Decrypt the data using DataProtectionScope.CurrentUser.
-            return ProtectedData.Unprotect(data, s_aditionalEntropy, DataProtectionScope.CurrentUser);
+            byte[] test;//Decrypt the data using DataProtectionScope.CurrentUser.
+            test = ProtectedData.Unprotect(data, s_aditionalEntropy, DataProtectionScope.CurrentUser);
+            return test; //ProtectedData.Unprotect(data, s_aditionalEntropy, DataProtectionScope.CurrentUser);
         }
         catch (CryptographicException e)
         {
